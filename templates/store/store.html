@@ -4,8 +4,11 @@
 
 <section class="section-pagetop bg">
 <div class="container">
+{% if 'search' in request.path%}
+	<h2>Search Results</h2>
+{% else %}
 	<h2 class="title-page">Our Store</h2>
-	
+{% endif %}
 </div> <!-- container //  -->
 </section>
 
@@ -119,6 +122,7 @@
 	<main class="col-md-9">
 
 <header class="border-bottom mb-4 pb-3">
+	
 		<div class="form-inline">
 			<span class="mr-md-auto"><b>{{product_count}}</b> Items found</span>
 			
@@ -138,13 +142,13 @@
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
 				<div class="fix-height">
-					<a href="./product-detail.html" class="title">{{ product.Product_name}}e</a>
+					<a href="{{ product.get_url}}" class="title">{{ product.Product_name}}e</a>
 					<div class="price-wrap mt-2">
 						<span class="price">${{ product.Price}}</span>
 						
 					</div> <!-- price-wrap.// -->
 				</div>
-				<a href="#" class="btn btn-block btn-success">Added to cart </a>
+				<a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-primary">Add to cart </a>
 			</figcaption>
 		</figure>
 	</div> <!-- col.// -->
